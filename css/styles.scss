@@ -1,6 +1,7 @@
 /*******************************@IMPORT SELECTORS******************************/
 @import "fonts.scss";
 @import "normalize.scss";
+@include normalize();
 
 /*********************************TAG SELECTORS********************************/
 html {
