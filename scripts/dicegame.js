@@ -79,4 +79,16 @@ function rollDiceAndDisplay()
     diceContainer2.innerHTML += rolledDice4.describeSelf();
 }
 
+// Empties the container.
+function resetDiceContainer()
+{
+    const diceContainer1 = document.getElementById("dice-container1");
+    const diceContainer2 = document.getElementById("dice-container2");
+
+    diceContainer1.innerHTML = "";
+    diceContainer2.innerHTML = "";
+
+}
+
 document.getElementById("roll").addEventListener("click", rollDiceAndDisplay);
+document.getElementById("reset").addEventListener("click", resetDiceContainer);
