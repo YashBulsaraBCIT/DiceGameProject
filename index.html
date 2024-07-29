@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3cfc1b7d66.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="scripts/dicegame.js" defer="defer"></script>
 </head>
 
@@ -31,15 +32,25 @@
 
                 </div>
             </div>
-            <button id="roll">Roll The Dice</button>
-            <button id="reset">Reset Game</button>
+            <div>
+                <button id="roll">Roll The Dice</button>
+                <button id="reset">Reset Game</button>
+            </div>
+            <div id="popupId" class="overlay">
+                <div class="popup">
+                    <a class="close" href="#">x</a>
+                    <div class="content" id="content">
+                        
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <footer>
         <div id="footer-wrapper">
             <h2>COMP2152</h2>
             <p>
-                Yash Bulsara & Marius Guerra Copyright 2024
+                Yash Bulsara & Marius Ruzzel Guerra Copyright 2024
                 <span>&copy;</span>
             </p>
         </div>

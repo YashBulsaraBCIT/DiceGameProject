@@ -1,12 +1,17 @@
 const diceContainer1 = document.getElementById("dice-container1");
 const diceContainer2 = document.getElementById("dice-container2");
-const rollButton = document.getElementById("roll")
-const restButton = document.getElementById("reset")
+const rollButton = document.getElementById("roll");
+const restButton = document.getElementById("reset");
+const resultPopupContent = document.getElementById("content");
+
+const $popup = $('#popupId');
+const $rollButton = $('#roll');
 
 let currentScore = 0;
 let totalScoreP1 = 0;
 let totalScoreP2 = 0;
 let turns = 0;
+let html = "";
 
 //@author Yash Bulsara
 class dice{
@@ -52,6 +57,41 @@ function scoreChecker(firstNumber, secondNumber){
     }
 
     return currentScore
+}
+
+function winChecker(totalScore1, totalScore2){
+    if(totalScore1 == totalScore2){
+        resultPopup("tie");
+    }else if(totalScore1 > totalScore2){
+        resultPopup("p1Winner");
+    }else{
+        resultPopup("p2Winner");
+    }
+}
+
+function resultPopup(result){
+    if(result == "tie"){
+        resultPopupContent.innerHTML = `<h2>It's a tie!</h2>`;
+
+    }else if(result == "p1Winner"){
+        resultPopupContent.innerHTML = `<h2>Player 1 Wins!</h2>`;
+
+    }else if(result == "p2Winner"){
+        resultPopupContent.innerHTML = `<h2>Player 2 Wins!</h2>`;
+    }
+
+    $popup.css("transition", "1s ease-in");
+    $popup.css("visibility", "visible"); 
+    $popup.css("opacity", 1);
+
+    $( ".close" ).click(function() {
+
+        $popup.css("transition", "1s ease-out");
+        $popup.css("visibility", "hidden"); 
+        $popup.css("opacity", 0);
+
+    });
+
 }
 
 //@author Marius Ruzzel Guerra
@@ -101,11 +141,17 @@ function rollDiceAndDisplay()
     diceContainer2.innerHTML = "";
     diceContainer2.innerHTML = rolledDice3.describeSelf();
     diceContainer2.innerHTML += rolledDice4.describeSelf();
-    diceContainer2.innerHTML += `<p>Score: ${scoreChecker(rolledDice3.getValue(), rolledDice3.getValue())}</p>`
+    diceContainer2.innerHTML += `<p>Score: ${scoreChecker(rolledDice3.getValue(), rolledDice4.getValue())}</p>`
     totalScoreP2 += currentScore
     diceContainer2.innerHTML += `<p>Total Score: ${totalScoreP2}</p>`
 
     turns++
+
+    console.log(turns);
+    if(turns == 3){
+        $rollButton.attr("disabled", true);
+        winChecker(totalScoreP1, totalScoreP2);
+    }
 }
 
 // Empties the container.
@@ -114,9 +160,11 @@ function resetDiceContainer()
 
     diceContainer1.innerHTML = "";
     diceContainer2.innerHTML = "";
-
+    turns = 0;
+    totalScoreP1 = 0;
+    totalScoreP2 = 0;
+    $rollButton.removeAttr("disabled");
 }
-
 
 rollButton.addEventListener("click", rollDiceAndDisplay);
 restButton.addEventListener("click", resetDiceContainer);
