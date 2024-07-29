@@ -1,5 +1,14 @@
+const diceContainer1 = document.getElementById("dice-container1");
+const diceContainer2 = document.getElementById("dice-container2");
+const rollButton = document.getElementById("roll")
+const restButton = document.getElementById("reset")
 
-//built by Yash Bulsara
+let currentScore = 0;
+let totalScoreP1 = 0;
+let totalScoreP2 = 0;
+let turns = 0;
+
+//@author Yash Bulsara
 class dice{
     #face;
     #value;
@@ -28,11 +37,23 @@ class dice{
     describeSelf(){
         let returnImage = `<img class="dice-img" src="images/dice-${this.#face}.jpg" alt="dice-${this.#face}">`
         return returnImage
-
-    
     }
 
 }
+
+function scoreChecker(firstNumber, secondNumber){
+    currentScore = 0;
+    if(firstNumber == 1 || secondNumber == 1){
+        currentScore = 0;
+    }else if(firstNumber == secondNumber){
+        currentScore = (firstNumber + secondNumber)*2
+    }else{
+        currentScore = firstNumber + secondNumber
+    }
+
+    return currentScore
+}
+
 //@author Marius Ruzzel Guerra
 class Player
 {   #playerName;
@@ -59,36 +80,43 @@ function rollDiceAndDisplay()
 
     //player dice pair
     const rolledDice1 = player1.rollDice();
-    const rolledDice2 = player1.rollDice()
+    const rolledDice2 = player1.rollDice();
 
     //computer dice pair
-    const rolledDice3 = player2.rollDice()
-    const rolledDice4 = player2.rollDice()
+    const rolledDice3 = player2.rollDice();
+    const rolledDice4 = player2.rollDice();
 
-
-    const diceContainer1 = document.getElementById("dice-container1");
-    const diceContainer2 = document.getElementById("dice-container2");
+    console.log(rolledDice1);
+    console.log(rolledDice2);
+    console.log(rolledDice3);
+    console.log(rolledDice4);
 
     diceContainer1.innerHTML = "";
     diceContainer1.innerHTML = rolledDice1.describeSelf();
     diceContainer1.innerHTML += rolledDice2.describeSelf();
-
+    diceContainer1.innerHTML += `<p>Score: ${scoreChecker(rolledDice1.getValue(), rolledDice2.getValue())}</p>`
+    totalScoreP1 += currentScore
+    diceContainer1.innerHTML += `<p>Total Score: ${totalScoreP1}</p>`
 
     diceContainer2.innerHTML = "";
     diceContainer2.innerHTML = rolledDice3.describeSelf();
     diceContainer2.innerHTML += rolledDice4.describeSelf();
+    diceContainer2.innerHTML += `<p>Score: ${scoreChecker(rolledDice3.getValue(), rolledDice3.getValue())}</p>`
+    totalScoreP2 += currentScore
+    diceContainer2.innerHTML += `<p>Total Score: ${totalScoreP2}</p>`
+
+    turns++
 }
 
 // Empties the container.
 function resetDiceContainer()
 {
-    const diceContainer1 = document.getElementById("dice-container1");
-    const diceContainer2 = document.getElementById("dice-container2");
 
     diceContainer1.innerHTML = "";
     diceContainer2.innerHTML = "";
 
 }
 
-document.getElementById("roll").addEventListener("click", rollDiceAndDisplay);
-document.getElementById("reset").addEventListener("click", resetDiceContainer);
+
+rollButton.addEventListener("click", rollDiceAndDisplay);
+restButton.addEventListener("click", resetDiceContainer);
