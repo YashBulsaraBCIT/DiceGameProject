@@ -335,6 +335,7 @@ template {
 
 html {
   box-sizing: border-box;
+  background-image: url(../images/wood-backgroound.jpg);
 }
 
 *,
@@ -344,7 +345,6 @@ html {
 }
 
 header {
-  background-color: #8c3cd6;
   padding: 10px;
 }
 
@@ -352,11 +352,11 @@ h1 {
   color: #EDEDE5;
   padding: 10px;
   margin: 5px;
+  text-align: center;
 }
 
 footer {
   padding: 10px;
-  background-color: #8c3cd6;
 }
 
 footer h2,
@@ -464,6 +464,17 @@ p {
   overflow: auto;
 }
 
+.dice-img {
+  max-height: 100px;
+  max-width: 100px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.game-buttons {
+  width: 100%;
+}
+
 #footer-wrapper {
   display: flex;
   max-width: 1020px;
@@ -478,6 +489,50 @@ p {
   min-height: 100vh;
   display: grid;
   grid-template-columns: minmax(250px, 1fr);
+}
+
+#box1 {
+  border: burlywood solid 10px;
+  border-radius: 20%;
+  padding: 20px;
+  background-image: url(../images/leather-background.jpg);
+  color: white;
+  height: 400px;
+}
+#box1 h2 {
+  text-align: center;
+}
+#box1 #dice-container1 {
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
+}
+#box1 #dice-container2 {
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
+}
+
+#box2 {
+  border: burlywood solid 10px;
+  border-radius: 20%;
+  padding: 20px;
+  background-image: url(../images/leather-background.jpg);
+  color: white;
+  height: 400px;
+}
+#box2 h2 {
+  text-align: center;
+}
+#box2 #dice-container1 {
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
+}
+#box2 #dice-container2 {
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
 }
 
 #wrapper {
@@ -513,5 +568,25 @@ p {
   }
   .box {
     grid-column: span 2;
+  }
+  #dice-container1 {
+    min-width: 100%;
+    min-height: 200px;
+    align-items: center;
+    position: relative;
+    left: 25%;
+  }
+  #dice-container1 p {
+    padding-left: 13%;
+  }
+  #dice-container2 {
+    min-width: 100%;
+    min-height: 200px;
+    align-items: center;
+    position: relative;
+    left: 25%;
+  }
+  #dice-container2 p {
+    padding-left: 13%;
   }
 }
