@@ -502,6 +502,9 @@ p {
 #box1 h2 {
   text-align: center;
 }
+#box1 p {
+  font-weight: bolder;
+}
 #box1 #dice-container1 {
   min-width: 100%;
   min-height: 100%;
@@ -523,6 +526,9 @@ p {
 }
 #box2 h2 {
   text-align: center;
+}
+#box2 p {
+  font-weight: bolder;
 }
 #box2 #dice-container1 {
   min-width: 100%;
