@@ -231,6 +231,9 @@ p {
     .container{
         grid-template-columns: repeat(1, minmax(250px, 1fr)) ;
     }
+    .popup{
+        width: 100%;
+    }
 
     .box {
         grid-column: span 2;
